@@ -1,0 +1,13 @@
+#include<stdio.h>
+int main(){
+
+  printf("%d %d",a,b);
+  int a=0;
+  int b2=123;
+  char* point=&a;
+  return 0;
+}
+
+void time_to_sleep();
+void next_thread();
+End of Code;
