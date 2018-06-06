@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -114,6 +115,7 @@ public class Controller2 implements Initializable{
     }
     
     /* Save File */
+    /*
     public void Save_Left(ActionEvent e) throws FileNotFoundException {
     	if(T1.isEditable()==true) {
     	    String string = null;
@@ -148,8 +150,45 @@ public class Controller2 implements Initializable{
     	}
     	else {System.out.println("Can not Save, File is UnEditable");}
     	}
+    */
+    public void Save_Left(ActionEvent e) {
+    	FileChooser fileChooser = new FileChooser();
+    	FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+    	fileChooser.getExtensionFilters().add(extFilter);
+    	File file = fileChooser.showSaveDialog(primaryStage);
+    	if (file != null) {
+    	     saveFile(T1.getText(), file);
+    	}
+
+    }
+    
+    public void Save_Right(ActionEvent e) {
+    	FileChooser fileChooser = new FileChooser();
+    	FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+    	fileChooser.getExtensionFilters().add(extFilter);
+    	File file = fileChooser.showSaveDialog(primaryStage);
+    	if (file != null) {
+    	     saveFile(T2.getText(), file);
+    	}
+
+    }
+    
+    private void saveFile(String content, File file){
+        try{
+          FileWriter writer;
+          writer = new FileWriter(file);
+          
+          writer.write(content);
+          writer.close();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    
     
     /* Compare and Merge */
+    
+    
     public void Compare(ActionEvent e) {
     	String string_Left = null;
 	    string_Left=T1.getText();
