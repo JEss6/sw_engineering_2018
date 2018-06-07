@@ -41,6 +41,18 @@ public class Controller2 implements Initializable{
 	private ImageView Right_Arrow;
 	
 	@FXML
+	private ImageView Up_Arrow_Left;
+	
+	@FXML
+	private ImageView Up_Arrow_Right;
+	
+	@FXML
+	private ImageView Down_Arrow_Left;
+	
+	@FXML
+	private ImageView Down_Arrow_Right;
+	
+	@FXML
 	private InlineCssTextArea T1;
 	
 	@FXML
@@ -49,18 +61,49 @@ public class Controller2 implements Initializable{
     @SuppressWarnings("unchecked")//임시 코드
 	@Override
     public void initialize(URL loc, ResourceBundle res) {
+    	T1.setEditable(false);
+    	T1.setEditable(false);
+    	
     	 Left_Arrow.setOnMouseClicked( new EventHandler() {
              @Override
              public void handle(Event event ) {
                  // 원하는 실행문
-               
+               System.out.println("Left Arrow");
              }
     	 });
     	 Right_Arrow.setOnMouseClicked( new EventHandler() {
              @Override
              public void handle(Event event ) {
                  // 원하는 실행문
-               
+            	 System.out.println("Right Arrow");
+             }
+    	 });
+    	 Up_Arrow_Left.setOnMouseClicked( new EventHandler() {
+             @Override
+             public void handle(Event event ) {
+                 // 원하는 실행문
+            	 System.out.println("Up Arrow Left");
+             }
+    	 });
+    	 Down_Arrow_Left.setOnMouseClicked( new EventHandler() {
+             @Override
+             public void handle(Event event ) {
+                 // 원하는 실행문
+            	 System.out.println("Down Arrow Left");
+             }
+    	 });
+    	 Up_Arrow_Right.setOnMouseClicked( new EventHandler() {
+             @Override
+             public void handle(Event event ) {
+                 // 원하는 실행문
+            	 System.out.println("Up Arrow Right");
+             }
+    	 });
+    	 Down_Arrow_Right.setOnMouseClicked( new EventHandler() {
+             @Override
+             public void handle(Event event ) {
+                 // 원하는 실행문
+            	 System.out.println("Down Arrow Right");
              }
     	 });
     }
@@ -129,7 +172,6 @@ public class Controller2 implements Initializable{
         } catch (IOException e) {
           e.printStackTrace();
         }
-
     }
     
     /* Edit File */
@@ -141,62 +183,26 @@ public class Controller2 implements Initializable{
     }
     
     /* Save File */
-    /*
-    public void Save_Left(ActionEvent e) throws FileNotFoundException {
-    	if(T1.isEditable()==true) {
-    	    String string = null;
-    	    string=T1.getText();
-    	    List<String> list=new ArrayList<String>();
-    	    list.clear();
-    	    list=Arrays.asList(string.split("\n"));
-    	    String Output_name ="output_test.txt";
-    	    PrintWriter output = new PrintWriter(Output_name);
-    	    for(int i=0;i<list.size();i++) {
-    	    	output.println(list.get(i));
-    	    }
-    	    System.out.println("Save Complete!");
-    	    output.close();
-    	}
-    	else {System.out.println("Can not Save, File is UnEditable");}
-    }
-    public void Save_Right(ActionEvent e) throws FileNotFoundException {
-    	if(T2.isEditable()==true) {
-    	    String string = null;
-    	    string=T2.getText();
-    	    List<String> list=new ArrayList<String>();
-    	    list.clear();
-    	    list=Arrays.asList(string.split("\n"));
-    	    String Output_name ="output_test.txt";
-    	    PrintWriter output = new PrintWriter(Output_name);
-    	    for(int i=0;i<list.size();i++) {
-    	    	output.println(list.get(i));
-    	    }
-    	    System.out.println("Save Complete!");
-    	    output.close();
-    	}
-    	else {System.out.println("Can not Save, File is UnEditable");}
-    	}
-    */
+
     public void Save_Left(ActionEvent e) throws FileNotFoundException {
     	FileChooser fileChooser = new FileChooser();
     	FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
     	fileChooser.getExtensionFilters().add(extFilter);
     	File file = fileChooser.showSaveDialog(primaryStage);
     	String string = null;
-    	String save =null;
     	string = T1.getText();
-    	//string.replaceAll("\n","Test");
     	List<String> list = new ArrayList<String>();
     	list.clear();
     	list=Arrays.asList(string.split("\n"));
-    	PrintWriter output = new PrintWriter(file.getName());
-    	System.out.println(file.getName());
-    	//System.out.println(string);
-    	if (file != null) {
-       	    for(int i=0;i<list.size();i++) {
-    	    	output.println(list.get(i));
-    	    }
+    	string="";
+    	for(int i=0;i<list.size();i++) {
+    		string=string+"\r\n"+list.get(i);
     	}
+    	System.out.println(string);
+    	if (file != null) {
+   	     saveFile(string, file);
+    	}
+    	T1.setEditable(false);
     }
     
     public void Save_Right(ActionEvent e) {
@@ -204,10 +210,20 @@ public class Controller2 implements Initializable{
     	FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
     	fileChooser.getExtensionFilters().add(extFilter);
     	File file = fileChooser.showSaveDialog(primaryStage);
-    	if (file != null) {
-    	     saveFile(T2.getText(), file);
+    	String string = null;
+    	string = T2.getText();
+    	List<String> list = new ArrayList<String>();
+    	list.clear();
+    	list=Arrays.asList(string.split("\n"));
+    	string="";
+    	for(int i=0;i<list.size();i++) {
+    		string=string+"\r\n"+list.get(i);
     	}
-
+    	System.out.println(string);
+    	if (file != null) {
+   	     saveFile(string, file);
+    	}
+    	T2.setEditable(false);
     }
     
     private void saveFile(String content, File file){
@@ -248,9 +264,8 @@ public class Controller2 implements Initializable{
 	    		;
 	    	}
 	    	else {
-	    		//T1.setStyle(3,"-fx-fill:red;");
 	    		T1.setEditable(true);
-	            T1.setParagraphStyle(i,"-fx-background-color:yellow;");
+	            T1.setParagraphStyle(i,"-fx-background-color:rgba(0, 100, 100, 0.5);");
 	            T1.setEditable(false);
  	            T2.setEditable(true);
 	            T2.setParagraphStyle(i,"-fx-background-color:yellow;");
@@ -287,13 +302,10 @@ public class Controller2 implements Initializable{
 	    		;
 	    	}
 	    	else {
-	    		//T1.setStyle(3,"-fx-fill:red;");
 	    		T1.setEditable(true);
 	    		T2.setEditable(true);
-	            //list_Right.set(i,string_Left);
 	            T1.replaceText(i, 0, i, string_Left.length(), string_Right);
 	            T1.setEditable(false);
-	            //T2.setParagraphStyle(i,"-fx-background-color:yellow;");
 	            T2.setEditable(false);
 	    	}
 	    }
@@ -322,13 +334,10 @@ public class Controller2 implements Initializable{
 	    		;
 	    	}
 	    	else {
-	    		//T1.setStyle(3,"-fx-fill:red;");
 	    		T1.setEditable(true);
 	    		T2.setEditable(true);
-	            //list_Right.set(i,string_Left);
 	            T2.replaceText(i, 0, i, string_Right.length(), string_Left);
 	            T1.setEditable(false);
-	            //T2.setParagraphStyle(i,"-fx-background-color:yellow;");
 	            T2.setEditable(false);
 	    	}
 	    }

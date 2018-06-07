@@ -14,14 +14,34 @@
    <children>
       <Pane prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: WHITE;">
          <children>
-            <ImageView fx:id="Left_Arrow" fitHeight="38.0" fitWidth="38.0" layoutX="121.0" layoutY="6.0">
+            <ImageView fx:id="Left_Arrow" fitHeight="38.0" fitWidth="38.0" layoutX="249.0" layoutY="6.0">
                <image>
                   <Image url="@../../../../../Desktop/소공/화살표/55-1.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="Right_Arrow" fitHeight="38.0" fitWidth="38.0" layoutX="441.0" layoutY="6.0">
+            <ImageView fx:id="Right_Arrow" fitHeight="38.0" fitWidth="38.0" layoutX="300.0" layoutY="6.0">
                <image>
                   <Image url="@../../../../../Desktop/소공/화살표/55.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="Down_Arrow_Left" fitHeight="38.0" fitWidth="38.0" layoutX="127.0" layoutY="6.0">
+               <image>
+                  <Image url="@../../../../../Desktop/소공/화살표/55-2.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="Up_Arrow_Left" fitHeight="38.0" fitWidth="38.0" layoutX="70.0" layoutY="6.0">
+               <image>
+                  <Image url="@../../../../../Desktop/소공/화살표/55-3.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="Down_Arrow_Right" fitHeight="38.0" fitWidth="38.0" layoutX="491.0" layoutY="6.0">
+               <image>
+                  <Image url="@../../../../../Desktop/소공/화살표/55-2.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="Up_Arrow_Right" fitHeight="38.0" fitWidth="38.0" layoutX="433.0" layoutY="6.0">
+               <image>
+                  <Image url="@../../../../../Desktop/소공/화살표/55-3.jpg" />
                </image>
             </ImageView>
          </children></Pane>
