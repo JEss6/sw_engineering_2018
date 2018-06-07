@@ -20,10 +20,13 @@ import java.util.ResourceBundle;
 import org.fxmisc.richtext.InlineCssTextArea;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -32,19 +35,42 @@ import java.lang.Math;
 public class Controller2 implements Initializable{
 	
 	@FXML
+	private ImageView Left_Arrow;
+	
+	@FXML
+	private ImageView Right_Arrow;
+	
+	@FXML
 	private InlineCssTextArea T1;
+	
 	@FXML
 	private InlineCssTextArea T2;
 
-    @Override
+    @SuppressWarnings("unchecked")//임시 코드
+	@Override
     public void initialize(URL loc, ResourceBundle res) {
-        
+    	 Left_Arrow.setOnMouseClicked( new EventHandler() {
+             @Override
+             public void handle(Event event ) {
+                 // 원하는 실행문
+               
+             }
+    	 });
+    	 Right_Arrow.setOnMouseClicked( new EventHandler() {
+             @Override
+             public void handle(Event event ) {
+                 // 원하는 실행문
+               
+             }
+    	 });
     }
     private Stage primaryStage;
     
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+    
+    
     
     /* Load File */
     
@@ -151,15 +177,26 @@ public class Controller2 implements Initializable{
     	else {System.out.println("Can not Save, File is UnEditable");}
     	}
     */
-    public void Save_Left(ActionEvent e) {
+    public void Save_Left(ActionEvent e) throws FileNotFoundException {
     	FileChooser fileChooser = new FileChooser();
     	FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
     	fileChooser.getExtensionFilters().add(extFilter);
     	File file = fileChooser.showSaveDialog(primaryStage);
+    	String string = null;
+    	String save =null;
+    	string = T1.getText();
+    	//string.replaceAll("\n","Test");
+    	List<String> list = new ArrayList<String>();
+    	list.clear();
+    	list=Arrays.asList(string.split("\n"));
+    	PrintWriter output = new PrintWriter(file.getName());
+    	System.out.println(file.getName());
+    	//System.out.println(string);
     	if (file != null) {
-    	     saveFile(T1.getText(), file);
+       	    for(int i=0;i<list.size();i++) {
+    	    	output.println(list.get(i));
+    	    }
     	}
-
     }
     
     public void Save_Right(ActionEvent e) {
