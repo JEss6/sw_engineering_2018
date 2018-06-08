@@ -98,7 +98,7 @@ public class Controller2 implements Initializable{
              		if(compare_start_Left==0) compare_start_Left=1;
              		else compare_index_Left--;
              		if(compare_index_Left==-1) compare_index_Left=compare_list.size()-1;
-             		T1.setParagraphStyle(((int)compare_list.get((compare_index_Left+1)%compare_list.size())), "-fx-background-color:rgba(0, 100, 100, 0.5);");
+             		T1.setParagraphStyle(((int)compare_list.get((compare_index_Left+1)%compare_list.size())), "-fx-background-color:rgba(255, 0, 0, 0.3);");
                  	T1.setParagraphStyle((int)compare_list.get((compare_index_Left)%compare_list.size()), "-fx-background-color:yellow;");
                   }
                  else System.out.println("Compare First");
@@ -111,7 +111,7 @@ public class Controller2 implements Initializable{
             	 if(Compare_Check==1) {
             		if(compare_start_Left==0) compare_start_Left=1;
             		else compare_index_Left++;
-            		T1.setParagraphStyle(((int)compare_list.get((compare_index_Left+compare_list.size()-1)%compare_list.size())), "-fx-background-color:rgba(0, 100, 100, 0.5);");
+            		T1.setParagraphStyle(((int)compare_list.get((compare_index_Left+compare_list.size()-1)%compare_list.size())), "-fx-background-color:rgba(255, 0, 0, 0.7);");
                 	T1.setParagraphStyle((int)compare_list.get(compare_index_Left%compare_list.size()), "-fx-background-color:yellow;");
                  }
                  else System.out.println("Compare First");
@@ -157,6 +157,7 @@ public class Controller2 implements Initializable{
     /* Load File */
     
     public void Load_Left(ActionEvent e) {
+    	Compare_Check=0;
         FileChooser fileChooser = new FileChooser();
         
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
@@ -170,6 +171,7 @@ public class Controller2 implements Initializable{
         }
  
     public void Load_Right(ActionEvent e) {
+    	Compare_Check=0;
         FileChooser fileChooser = new FileChooser();
         
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
@@ -215,9 +217,11 @@ public class Controller2 implements Initializable{
     
     /* Edit File */
     public void Edit_Left(ActionEvent e){
+    	Compare_Check=0;
     	T1.setEditable(true);
     }
     public void Edit_Right(ActionEvent e){
+    	Compare_Check=0;
     	T2.setEditable(true);
     }
     
